@@ -13,7 +13,8 @@ RUN wget https://beta.quicklisp.org/quicklisp.lisp
 RUN cat /quicklisp_install | /opt/ccl/lx86cl64 --load /quicklisp.lisp
 
 # install RethinkDB
-RUN echo "deb http://download.rethinkdb.com/apt xenial main" | tee /etc/apt/sources.list.d/rethinkdb.list && wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && apt-get update && apt-get install rethinkdb -y
+RUN echo "deb http://download.rethinkdb.com/apt xenial main" > /etc/apt/sources.list.d/rethinkdb.list
+RUN wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - && apt-get update && apt-get install rethinkdb -y
 
 # install turtl API
 RUN cd /opt/ && git clone https://github.com/turtl/api.git --depth 1
