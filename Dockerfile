@@ -13,7 +13,7 @@ RUN wget https://beta.quicklisp.org/quicklisp.lisp
 RUN cat /quicklisp_install | /opt/ccl/lx86cl64 --load /quicklisp.lisp
 
 # install RethinkDB
-RUN echo "deb http://download.rethinkdb.com/apt xenial main" > /etc/apt/sources.list.d/rethinkdb.list
+RUN echo "deb http://download.rethinkdb.com/apt jessie main" > /etc/apt/sources.list.d/rethinkdb.list
 RUN wget -qO- https://download.rethinkdb.com/apt/pubkey.gpg | apt-key add - 
 RUN apt-get update
 RUN apt-get install -y rethinkdb
