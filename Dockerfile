@@ -1,6 +1,8 @@
-FROM ubuntu:16.04
+FROM debian:jessie
 
-RUN apt-get update && apt-get install -y wget libterm-readline-perl-perl gcc libuv1-dev git nano
+RUN echo "deb http://ftp.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/backports.list
+RUN apt-get update
+RUN apt-get install -y wget gcc git nano libuv1-dev libterm-readline-perl-perl
 
 # Install ccl
 RUN wget -P /opt/ ftp://ftp.clozure.com/pub/release/1.11/ccl-1.11-linuxx86.tar.gz && mkdir -p /opt/ccl && tar xvzf /opt/ccl-1.11-linuxx86.tar.gz -C /opt/ccl --strip-components=1
