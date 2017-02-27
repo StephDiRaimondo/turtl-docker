@@ -1,6 +1,10 @@
 FROM alpine:latest
 
-RUN apk-install gcc git nano libuv-dev readline
+RUN apk-install gcc
+RUN apk-install git
+RUN apk-install nano
+RUN apk-install libuv-dev
+RUN apk-install readline
 
 # Install ccl
 RUN wget -P /opt/ ftp://ftp.clozure.com/pub/release/1.11/ccl-1.11-linuxx86.tar.gz && mkdir -p /opt/ccl && tar xvzf /opt/ccl-1.11-linuxx86.tar.gz -C /opt/ccl --strip-components=1
