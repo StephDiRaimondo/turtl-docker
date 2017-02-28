@@ -10,7 +10,8 @@ RUN tar xvzf ccl-1.11-linuxx86.tar.gz -C /opt/ccl --strip-components=1
 
 # install quicklisp
 WORKDIR /opt/
-ADD quicklisp_install quicklisp.lisp
+ADD quicklisp_install
+ADD quicklisp.lisp
 #RUN wget https://beta.quicklisp.org/quicklisp.lisp
 RUN cat quicklisp_install | /opt/ccl/lx86cl64 --load quicklisp.lisp
 
