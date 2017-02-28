@@ -9,16 +9,15 @@ RUN wget ftp://ftp.clozure.com/pub/release/1.11/ccl-1.11-linuxx86.tar.gz
 RUN tar xvzf ccl-1.11-linuxx86.tar.gz -C /opt/ccl --strip-components=1
 
 # install quicklisp
-COPY quicklisp_install /opt/quicklisp_install
-COPY quicklisp.lisp /tmp/quicklisp.lisp
+WORKDIR /opt/
+ADD quicklisp_install quicklisp.lisp
 #RUN wget https://beta.quicklisp.org/quicklisp.lisp
-RUN cat /opt/quicklisp_install | /opt/ccl/lx86cl64 --load /tmp/quicklisp.lisp
+RUN cat quicklisp_install | /opt/ccl/lx86cl64 --load quicklisp.lisp
 
 # install RethinkDB
 RUN apk add rethinkdb --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing --allow-untrusted
 
 # install turtl API
-WORKDIR /opt/ 
 RUN git clone https://github.com/turtl/api.git --depth 1
 WORKDIR /root/quicklisp/local-projects
 RUN git clone git://github.com/orthecreedence/cl-hash-util
