@@ -10,7 +10,8 @@ RUN tar xvzf ccl-1.11-linuxx86.tar.gz -C /opt/ccl --strip-components=1
 
 # install quicklisp
 COPY quicklisp_install /opt/quicklisp_install
-RUN wget https://beta.quicklisp.org/quicklisp.lisp
+COPY quicklisp.lisp /tmp/quicklisp.lisp
+#RUN wget https://beta.quicklisp.org/quicklisp.lisp
 RUN cat /opt/quicklisp_install | /opt/ccl/lx86cl64 --load /tmp/quicklisp.lisp
 
 # install RethinkDB
