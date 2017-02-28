@@ -10,10 +10,9 @@ RUN tar xvzf ccl-1.11-linuxx86.tar.gz -C /opt/ccl --strip-components=1
 
 # install quicklisp
 WORKDIR /opt/
-ADD quicklisp_install
-ADD quicklisp.lisp
+ADD quicklisp_install quicklisp.lisp
 #RUN wget https://beta.quicklisp.org/quicklisp.lisp
-RUN cat quicklisp_install | /opt/ccl/lx86cl64 --load quicklisp.lisp
+RUN cat /opt/quicklisp_install | /opt/ccl/lx86cl64 --load /opt/quicklisp.lisp
 
 # install RethinkDB
 RUN apk add rethinkdb --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing --allow-untrusted
