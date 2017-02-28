@@ -3,14 +3,15 @@ FROM alpine:latest
 RUN apk --no-cache add gcc git nano libuv-dev readline
 
 # Install ccl
-RUN wget -P /opt/ ftp://ftp.clozure.com/pub/release/1.11/ccl-1.11-linuxx86.tar.gz
+WORKDIR /tmp/
 RUN mkdir -p /opt/ccl
-RUN tar xvzf /opt/ccl-1.11-linuxx86.tar.gz -C /opt/ccl --strip-components=1
+RUN wget ftp://ftp.clozure.com/pub/release/1.11/ccl-1.11-linuxx86.tar.gz
+RUN tar xvzf ccl-1.11-linuxx86.tar.gz -C /opt/ccl --strip-components=1
 
 # install quicklisp
-COPY quicklisp_install /quicklisp_install
+COPY quicklisp_install /opt/quicklisp_install
 RUN wget https://beta.quicklisp.org/quicklisp.lisp
-RUN cat /quicklisp_install | /opt/ccl/lx86cl64 --load /quicklisp.lisp
+RUN cat /opt/quicklisp_install | /opt/ccl/lx86cl64 --load /tmp/quicklisp.lisp
 
 # install RethinkDB
 RUN apk add rethinkdb --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing --allow-untrusted
