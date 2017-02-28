@@ -31,7 +31,7 @@ COPY launch.lisp /opt/api/
 COPY rethinkdb.conf /etc/rethinkdb/instances.d/instance1.conf
 
 # cleaning
-RUN rm -rf /opt/ccl-1.11-linuxx86.tar.gz
+RUN rm -Rf /tmp/ccl-1.11-linuxx86.tar.gz
 
 # general settings
 EXPOSE 8181
